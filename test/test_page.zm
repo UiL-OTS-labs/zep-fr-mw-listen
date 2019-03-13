@@ -1,0 +1,422 @@
+/******************************************************************************\
+FILE:           test_page.zm
+AUTHOR:         Theo Veenker <theo.veenker@beexy.nl>
+ADAPTED BY:     -
+
+DESCRIPTION:
+
+Provides a page object to show to the participant during test trials.
+It handles presenting the stimulus and recording the participant's response.
+
+
+HISTORY:
+2012-07-09 TV   Created.
+
+\******************************************************************************/
+
+import std_sound_output_device;
+
+
+Page test_page
+{
+    TestItem    item;           // trial control parameters
+    LabelInfo[..] labels;       // array containing sound labelling info
+
+
+    init()
+    {
+        fill_pattern_color = TEST_PAGE_COLOR;
+    }
+
+
+    on_event:key_press()
+    {
+        // Handle spacebar and Enter.
+        if (input_key == ' ' || input_key == KEY_Return)
+            response.process_hit(event_time);
+        else
+            handle_special_key(this, input_key, input_modifiers);
+    }
+
+
+    on_event:message()
+    {
+        // Process button-box message. See setup() below.
+        response.process_hit(event_time);
+    }
+
+
+    VerticalLayout layout
+    {
+        init()
+        {
+            spacing = 50;
+            height = 0;     // 0 means as large as possible
+        }
+
+
+        CanvasGadget canvas
+        {
+            init()
+            {
+//                fill_pattern_color = TEST_PAGE_STIMULUS_COLOR;
+                size = 200, 200;
+                offset_x = width / 2;
+                offset_y = height / 2;
+            }
+
+
+            CrossShape fixation
+            {
+                init()
+                {
+                    radius = 25;
+                    line_width = 15;
+                    line_pattern_color = color:black;
+                }
+            }
+        }
+
+
+        time start_fixation(time t)
+        {
+            // Start fixation cross.
+            canvas.fixation.start(t);
+
+            // Return fixation onset time.
+            return canvas.fixation.expected_start_time;
+        }
+
+
+        void fixation_feedback(dur rt)
+        {
+            if (rt <= TOO_EARLY_RESPONSE)
+            {
+                canvas.fixation.line_pattern_color = color:crimson;
+                canvas.fixation.rotation = M_PI / 4.0;
+            }
+            else if (rt >= TOO_LATE_RESPONSE)
+            {
+                canvas.fixation.line_pattern_color = color:royalblue;
+                canvas.fixation.rotation = M_PI / 4.0;
+            }
+            else
+            {
+                canvas.fixation.line_pattern_color = color:green;
+                canvas.fixation.rotation = 0.0;
+            }
+        }
+
+
+        void reset()
+        {
+            full_abort();
+
+            canvas.fixation.is_visible = false;
+            canvas.fixation.line_pattern_color = color:black;
+            canvas.fixation.rotation = 0.0;
+        }
+    }
+
+
+    SoundChain stimulus
+    {
+        // Sound source/producer object.
+        SoundFile clip {}
+
+
+        // Sound sink/consumer object.
+        SoundPlayback playback {}
+
+
+        time play(time t, real begin, real end)
+        {
+            abort();
+            beeper.abort();     // Just in case
+
+            int selectiononset = int(begin * PLAYBACK_SAMPLE_RATE);
+            int selectionoffset = int(end * PLAYBACK_SAMPLE_RATE);
+
+            playback.device = sound_output_device;
+            clip.file = stimuli_dir() + "sounds/" + item.fname_audio;
+            clip.set_selection(selectiononset, selectionoffset);
+
+            start(t);
+
+            return expected_start_time;
+        }
+    }
+
+
+    SoundChain beeper
+    {
+        // Sound source/producer object.
+        BeepGenerator beep {}
+
+
+        // Sound sink/consumer object.
+        SoundPlayback playback {}
+
+
+        time play(time t)
+        {
+            abort();
+            stimulus.abort();   // Just in case
+
+            playback.device = sound_output_device;
+            beep.frequency = 1000;
+            beep.fade_in_duration = 10ms;
+            beep.fade_out_duration = 10ms;
+            beep.content_duration = BEEP_DURATION;
+
+            start(t);
+
+            return expected_finish_time;
+        }
+    }
+
+
+    Response response
+    {
+        int     slength;        // labels string length
+        int     nsegments;      // number of segments/labels in labels string
+        int     segnum;         // current segment number
+        real    prevsegend;     // offset in sound file of previous segment
+        dur     segdur;         // duration of current segment
+
+        bool    measure;        // set when presenting a starred segment
+        int     measnum;        // current measurement number
+
+        // Response data.
+        int[..] rt;             // response times for measured segments [ms]
+        int[..] segdurs;        // corresponding segment durations [ms]
+        int     tooearly;       // number of responses that came too early
+
+
+        void clear()
+        {
+            // Determine length of labels string.
+            slength = length(item.labels);
+
+            // Count how many segments/labels in labels string.
+            nsegments = count_keys(item.labels, "/") + 1;
+
+            segnum = 0;
+            prevsegend = 0;
+
+            measure = false;
+            measnum = 1;
+
+            // Initialize RT array (1 more for convenience, we won't use rt[0]).
+            rt.size = MAX_STARRED_SEGMENTS + 1;
+            segdurs.size = MAX_STARRED_SEGMENTS + 1;
+            int n;
+            while (n < rt.size)
+            {
+                rt[n] = -9999;
+                segdurs[n] = 0;
+                n++;
+            }
+            tooearly = 0;
+        }
+
+
+        void process_hit(time t)
+        {
+            HitType validity = hit(t);
+
+            // Accept the first hit in the response interval, end the 
+            // response interval and start next stimulus/response interval.
+            if (validity == HIT_VALID)
+            {
+                if (measure)
+                {
+                    if (measnum <= MAX_STARRED_SEGMENTS)
+                    {
+                        rt[measnum] = int(reaction_time(0));
+                        segdurs[measnum] = int(segdur);
+                        measnum++;
+                    }
+                    else
+                    {
+                        print_error("Too many starred segments in labels "
+                            "string " + string(item.id) + "\n");
+                    }
+                    
+                }
+
+                if (segnum > 0)
+                    layout.fixation_feedback(reaction_time(0));
+                else
+                    layout.fixation_feedback(0ms);
+
+                ignore_remaining_hits();
+                if (stimulus.is_busy)
+                    next.start(stimulus.expected_finish_time);
+                else
+                    next_segment(t);
+            }
+            else if (validity == HIT_TOO_EARLY)
+            {
+//                println("Too early!");
+                tooearly++;
+            }
+        }
+
+
+        on_event:finish()
+        {
+            done(CONTINUE);
+        }
+
+
+        Timer next
+        {
+            on_event:expire()
+            {
+                next_segment(expire_time);
+            }
+        }
+
+
+        void next_segment(time t)
+        {
+            if (segnum == nsegments)
+            {
+                time beepoffset = beeper.play(t + STIMULUS_DELAY);
+                stop(beepoffset);
+            }
+            else
+            {
+                string label = token(item.labels, "/", segnum);
+                measure = character(label, 0) == '#';
+                if (measure) label = substring(label, 1, slength-1);
+                label = trim_whitespace(label);
+                segnum++;
+
+                // Find label in labelling table.
+                real begin = -1;
+                real end = -1;
+                int n;
+                while (n < labels.size)
+                {
+                    if (labels[n].tiernum == item.tiernum && 
+                        labels[n].begin >= prevsegend && 
+                        labels[n].label == label)
+                    {
+                        begin = labels[n].begin;
+                        end = labels[n].end;
+                        break;
+                    }
+                    n++;
+                }
+                if (begin < 0)
+                {
+                    print_error("Label \"" + label + "\" not found.\n");
+                }
+
+                time stimonset = stimulus.play(t + STIMULUS_DELAY, 
+                    prevsegend, end);
+                prevsegend = end;
+                segdur = stimulus.duration;
+
+                // Allow response from stimulus onset, but measure RT from
+                // stimulus offset.
+                start(stimonset);
+                reference_time = stimulus.expected_finish_time;
+            }
+        }
+    }
+
+
+    // Aborts any ongoing activity on this page and signals the initiator
+    // of the trial that we're done.
+    void done(int msgid)
+    {
+        // Just in case; abort presentation if still active.
+        layout.reset();
+        stimulus.abort();
+
+        signal_target(msgid);   // tell caller we're done
+        target = null;
+
+        control.clear_status();
+    }
+
+
+    //==========================================================================
+
+
+    // Performs preparatory work required before using this page.
+    void setup(int ntrials=-1, bool pr=false)
+    {
+        test_page_overlay.setup(this);
+
+        // Show or hide prompt.
+        test_page_overlay.show_prompt(pr ? 
+            "play sentence word by word" : "");
+
+        // Enable or disable the progress bar.
+        test_page_overlay.show_progress_bar(ntrials);   // disabled if < 0
+
+
+        // Enable button-box buttons.
+        control.target = this;
+        control.button_box.disable_buttons();
+        control.button_box.enable_all_buttons(CONTINUE);
+    }
+
+
+    // Performs cleaning up if necessary.
+    void cleanup()
+    {
+        test_page_overlay.cleanup();
+
+        control.button_box.disable_buttons();
+        control.target = null;
+    }
+
+
+    // Starts a trial.
+    void action(Object caller, TestItem it, time tref, int count=-1)
+    {
+        // Save the passed trial control parameters.
+        item = it;
+
+
+        // Show this page (if not yet done) and make tref the trial start time.
+        tref = test_window1.show_test_page(this, tref + INTERTRIAL_INTERVAL);
+
+
+        // Reset response data.
+        response.clear();
+
+
+        // Load labelling information into the labelling table.
+        labels.load(stimuli_dir() + "sounds/" + item.fname_label, false, 0);
+
+
+        // Stat the fixation symbol. Once that is displayed participant can 
+        // produce the segments by hitting the response button repeatedly.
+        time fixonset = layout.start_fixation(tref);
+
+
+        // Response interval starts at fixation symbol onset.
+        response.start(fixonset);
+
+
+        // Update progress counter (if enabled).
+        test_page_overlay.update_progress_bar(count);
+
+
+        // Update status line on control window. Cleared in done() above.
+        control.set_status(
+            string(item.id) + "  " + 
+            string(item.type) + "  " + 
+            string(item.labels));
+
+
+        // Remember who to signal when the trial is over.
+        target = caller;
+    }
+}

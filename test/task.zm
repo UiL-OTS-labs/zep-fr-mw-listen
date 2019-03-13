@@ -1,0 +1,310 @@
+/******************************************************************************\
+FILE:           task.zm
+AUTHOR:         Theo Veenker <theo.veenker@beexy.nl>
+ADAPTED BY:     -
+
+DESCRIPTION:
+
+Implementation of task: Self-Paced Listening with Moving Window
+See readme.txt for more information.
+
+
+Global structure of this experiment phase:
+
+  - instructions
+
+  - practice part
+      trial
+        stimulus presentation
+        question (conditional)
+
+  - pause
+
+  - test part
+      trial
+        stimulus presentation
+        question (conditional)
+
+
+HISTORY:
+2012-07-09 TV   Created.
+
+\******************************************************************************/
+
+//requires 1.16;
+
+import std_choose_1of2_page;
+
+import defs;
+import stimuli;
+import shuffle;
+import output;
+import test_page;
+
+
+Block task
+{
+    on_event:entry()
+    {
+
+        control.button_box.open();
+    }
+
+    Part instructions
+    {
+        on_event:entry()
+        {
+//            pause_page.set_text_size(1000, 600);
+            pause_page.set_text(
+                "<b>Dear participant,</b>\n"
+                "\n"
+                "Thank you for participating in this experiment.\n"
+                "\n"
+                "You are now going to hear sentences over the headphones, one "
+                "after the other. Each sentence is broken up into words. You "
+                "can play the sentence word-by-word by repeatedly hitting "
+//                "the spacebar. "
+                "the button in front of you. "
+                "This way you walk through each sentence. Your task is to "
+                "process to each sentence as quickly as possible.\n"
+                "\n"
+                "Sometimes a statement about a sentence comes up. You then "
+                "have to indicate whether the statement is correct or not. "
+                "Therefore it is important that you really <i>listen</i> to "
+                "each sentence.\n"
+                "\n"
+                "First we will do a short practice.\n"
+                "\n"
+//                "<i>Hit Enter when ready to start.</i>", 
+                "<i>Hit any button on the button-box when ready to start.</i>", 
+                true);
+
+            pause_page.action(this);
+            control.button_box.enable_all_buttons(CONTINUE);
+        }
+    }
+
+
+    Block practice
+    {
+        TestItem        item;   // current item
+
+
+        on_event:entry()
+        {
+            println(prac_items.size);
+            num_cycles = prac_items.size;
+            println(num_cycles);
+
+            // Prepare test page: progress bar and prompt enabled.
+            test_page.setup(num_cycles, true);
+        }
+
+
+        on_event:exit()
+        {
+            test_page.cleanup();
+        }
+
+
+        Trial trial
+        {
+            on_event:entry()
+            {
+                item = prac_items[practice.cycle];
+            }
+
+
+            SubTrial presentation
+            {
+                on_event:entry()
+                {
+                    test_page.action(this, item, reference_time, practice.cycle);
+                }
+            }
+
+
+            TransientPart
+            {
+                on_event:entry()
+                {
+                    // Check if we need to ask a comprehension question.
+                    if (length(item.question) == 0)
+                        trial.leave();  // No question. Trial done.
+                }
+            }
+
+
+            SubTrial question
+            {
+                on_event:entry()
+                {
+                    choose_1of2_page.set_text(item.question);
+                    choose_1of2_page.set_label_texts(" Correct ", " Incorrect ");
+                    choose_1of2_page.set_keys(KEY_Shift_L, KEY_Shift_R);
+                    choose_1of2_page.action(this, item.qanswer ? 1 : 2);
+                }
+            }
+        }
+    }
+
+
+    Part
+    {
+        on_event:entry()
+        {
+            blank_page.action_auto(this, 500ms);
+        }
+    }
+
+
+    Part pause
+    {
+        on_event:entry()
+        {
+            pause_page.set_text(
+                "End of the practice part.\n"
+                "\n"
+                "If you have any questions at this moment please ask the "
+                "experimenter now.\n"
+                "\n"
+                "<i>Hit Enter when ready to proceed.</i>", 
+//                "<i>Hit any button on the button-box when ready to "
+//                "proceed.</i>", 
+                true);
+
+            pause_page.action(this);
+            control.button_box.enable_all_buttons(CONTINUE);
+        }
+    }
+
+
+    Block test
+    {
+        TestItem        item;   // current item
+        TestOutput      output; // current output table row
+
+
+        on_event:entry()
+        {
+            // Randomize test items table.
+            if (shuffle_test_items() != OK) terminate;
+
+            num_cycles = test_items.size;
+//            num_cycles = 3;
+
+            // Prepare test page: progress bar enabled, prompt disabled.
+            test_page.setup(num_cycles, false);
+        }
+
+
+        on_event:exit()
+        {
+            test_page.cleanup();
+
+            // Save test output table as CSV file.
+            test_output_save();
+        }
+
+
+        Trial trial
+        {
+            on_event:entry()
+            {
+                item = test_items[test.cycle];
+
+                output.trialnum = test.cycle + 1;
+                output.id = item.id;
+                output.type = item.type;
+                output.question = substring(item.question, 0, 30);
+                output.qcorrect = -1;
+            }
+
+
+            on_event:exit()
+            {
+                // Add new row to test output table.
+                test_output_append(output);
+            }
+
+
+            SubTrial presentation
+            {
+                on_event:entry()
+                {
+                    test_page.action(this, item, reference_time, test.cycle);
+                }
+
+
+                on_event:exit()
+                {
+                    output.dur1 = test_page.response.segdurs[1];
+                    output.dur2 = test_page.response.segdurs[2];
+                    output.dur3 = test_page.response.segdurs[3];
+                    output.dur4 = test_page.response.segdurs[4];
+                    output.dur5 = test_page.response.segdurs[5];
+                    output.dur6 = test_page.response.segdurs[6];
+                    output.dur7 = test_page.response.segdurs[7];
+                    output.dur8 = test_page.response.segdurs[8];
+                    output.dur9 = test_page.response.segdurs[9];
+                    output.rt1 = test_page.response.rt[1];
+                    output.rt2 = test_page.response.rt[2];
+                    output.rt3 = test_page.response.rt[3];
+                    output.rt4 = test_page.response.rt[4];
+                    output.rt5 = test_page.response.rt[5];
+                    output.rt6 = test_page.response.rt[6];
+                    output.rt7 = test_page.response.rt[7];
+                    output.rt8 = test_page.response.rt[8];
+                    output.rt9 = test_page.response.rt[9];
+                }
+            }
+
+
+            TransientPart
+            {
+                on_event:entry()
+                {
+                    // Check if we need to ask a comprehension question.
+                    if (random(100) >= STATEMENT_CHANCE || 
+                            length(item.question) == 0)
+                        trial.leave();  // No question. Trial done.
+                }
+            }
+
+
+            SubTrial question
+            {
+                on_event:entry()
+                {
+                    choose_1of2_page.set_text(item.question);
+                    choose_1of2_page.set_label_texts(" Correct ", " Incorrect ");
+                    choose_1of2_page.set_keys(KEY_Shift_L, KEY_Shift_R);
+                    choose_1of2_page.action(this, item.qanswer ? 1 : 2);
+                }
+
+
+                on_event:exit()
+                {
+                    output.qcorrect = choose_1of2_page.response.correct;
+                }
+            }
+        }
+    }
+
+
+    Part
+    {
+        on_event:entry()
+        {
+            blank_page.action_auto(this, 500ms);
+        }
+    }
+}
+
+
+void action(Part caller)
+{
+    // Activate the task. When the task is done, the registered caller
+    // (c.q. the main experiment object) will automatically be signalled.
+    task.enter(caller);
+}

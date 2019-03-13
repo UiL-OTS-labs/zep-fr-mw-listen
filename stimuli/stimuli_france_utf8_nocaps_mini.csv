@@ -1,0 +1,13 @@
+id;seg1;seg2;seg3;seg4;seg5;seg6;seg7;seg8;seg9;question;qanswer;fname_audio;fname_label;type;tiernum;labels
+1;aujourd’hui;il;entretient le lien;avec son équipe;;;;;;Il entretient le lien tout seul?;FALSE;aujourdhui_lelien_equipe.wav;aujourdhui_lelien_equipe.csv;SIMPLE;1;il
+2;ce weekend;il réserve;la rancontre;dans le restaurant;;;;;;Il reserve la rancontre dans le cafe?;TRUE;weekend_rancontre_restaurant.wav;weekend_rancontre_restaurant.csv;SIMPLE;1;il réserve
+3;aujourd’hui;le lien;qu’il entretient;avec son équipe;est important;;;;;Le lien n’est pas importante.;FALSE;le_lien_equipe_important.wav;le_lien_equipe_important.csv;COMPLEX;1;le lien
+4;vendredi;la tâche;qu’il;décrit;est;à;effectuer;;;La tache est a effectuer dimanche;FALSE;tache_effectuer_venredi.wav;tache_effectuer_venredi.csv;COMPLEX;1;la tâche
+5;aujourd’hui;je ;sais;l’heure;exacte;;;;;Je sais l’heure exacte aujourd’hui.;TRUE;jesais_heure_exacte.wav;jesais_heure_exacte.csv;HIGHFREQ;1;je 
+6;ce week-end;elle;a;le temps;de;sortir;;;;Elle n’as pas le temps de sortir.;FALSE;ella_le_temps_sortir.wav;ella_le_temps_sortir.csv;HIGHFREQ;1;elle
+7;heureusement;la ;deuxième;tâche;est ;la meilleure;;;;La troisieme tache est la meilleure.;FALSE;deuxieme_tache_meilleure.wav;deuxieme_tache_meilleure.csv;LOWFREQ;1;la 
+8;normalement;on;entend;une discussion;structurée;;;;;On entend une discussion structuree;TRUE;on_entend_discussion_structuree.wav;on_entend_discussion_structuree.csv;LOWFREQ;1;on
+9;ce matin;il;rend;le;dernier;soupir;dans;son lit;;Il rend la premier soupir dans son lit;FALSE;il_rend_dernier_soupir.wav;il_rend_dernier_soupir.csv;LITERAL;1;il
+10;ce matin;il;se;tourne;les pouces;en;classe;;;Il se tourne les pouces.;TRUE;il_se_tourne_les_pouces.wav;il_se_tourne_les_pouces.csv;LITERAL;1;il
+11;normalement;elle;donne;sa langue;au;chat;en;jouant;;"Normallement; elle trouve une solution";TRUE;elle_donne_langue_au_chat.wav;elle_donne_langue_au_chat.csv;FIGURATIVE;1;elle
+12;c’est;pisser;dans;un violon;avec;ces idées;;;;Ces idees sont tres realisable.;FALSE;pisser_dans_violon.wav;pisser_dans_violon.csv;FIGURATIVE;;pisser

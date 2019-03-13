@@ -1,0 +1,37 @@
+/******************************************************************************\
+FILE:           defs.zm
+AUTHOR:         Theo Veenker <theo.veenker@beexy.nl>
+ADAPTED BY:     -
+
+DESCRIPTION:
+
+Defines experiment settings such as for trial timing.
+
+
+HISTORY:
+2012-07-09 TV   Created.
+
+\******************************************************************************/
+
+
+// Duration of the interval between two trials.
+const dur       INTERTRIAL_INTERVAL             = 500ms;
+
+// Maximum number of starred segments in a sentence. Only listening time of
+// starred segments are recorded. When changing this value also change the 
+// definition of the TestOutput record (in output.zm) and make sure all 
+// record fields are assigned to (in listen_mw.zm).
+const int       MAX_STARRED_SEGMENTS            = 5;
+
+// Chance of presenting a question/statement (0..100%).
+const int       STATEMENT_CHANCE                = 50;
+
+// Delay between response and next stimulus. 
+const dur       STIMULUS_DELAY                  = 50ms;
+
+// Duration of the end-of-sentence beep.
+const dur       BEEP_DURATION                   = 100ms;
+
+// What response times are considered too early or too late.
+const dur       TOO_EARLY_RESPONSE              = -100ms;
+const dur       TOO_LATE_RESPONSE               = 500ms;

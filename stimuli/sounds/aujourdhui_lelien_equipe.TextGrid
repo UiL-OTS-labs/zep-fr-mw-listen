@@ -1,0 +1,66 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 7.6259999999999994 
+tiers? <exists> 
+size = 1 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "intervals" 
+        xmin = 0 
+        xmax = 7.6259999999999994 
+        intervals: size = 13 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.14487986614497517 
+            text = "aujourd'hui" 
+        intervals [2]:
+            xmin = 0.14487986614497517 
+            xmax = 0.6348220984349257 
+            text = "" 
+        intervals [3]:
+            xmin = 0.6348220984349257 
+            xmax = 0.6606085317133441 
+            text = "" 
+        intervals [4]:
+            xmin = 0.6606085317133441 
+            xmax = 1.8081048126029649 
+            text = "aujourd'hui" 
+        intervals [5]:
+            xmin = 1.8081048126029649 
+            xmax = 1.8338912458813834 
+            text = "" 
+        intervals [6]:
+            xmin = 1.8338912458813834 
+            xmax = 2.2464741783360784 
+            text = "" 
+        intervals [7]:
+            xmin = 2.2464741783360784 
+            xmax = 2.4914452944810535 
+            text = "il" 
+        intervals [8]:
+            xmin = 2.4914452944810535 
+            xmax = 3.5357958422570013 
+            text = "  entretient" 
+        intervals [9]:
+            xmin = 3.5357958422570013 
+            xmax = 3.8452330415980223 
+            text = "" 
+        intervals [10]:
+            xmin = 3.8452330415980223 
+            xmax = 5.585817287891268 
+            text = "avec son equipe" 
+        intervals [11]:
+            xmin = 5.585817287891268 
+            xmax = 5.611603721169686 
+            text = "on equipe" 
+        intervals [12]:
+            xmin = 5.611603721169686 
+            xmax = 5.637390154448104 
+            text = "" 
+        intervals [13]:
+            xmin = 5.637390154448104 
+            xmax = 7.6259999999999994 
+            text = "" 

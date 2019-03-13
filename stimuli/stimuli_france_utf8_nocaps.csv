@@ -1,0 +1,61 @@
+id,seg1,seg2,seg3,seg4,seg5,seg6,seg7,seg8,seg9,type
+1,aujourd’hui,il,entretient,le lien,avec,son équipe,,,,non-complex
+2,ce weekend,il,réserve,la rancontre,dans,le restaurant,,,,non-complex
+3,venredi,il,décrit,la tâche,à,effectuer,,,,non-complex
+4,cet après-midi,il,essuie,la vision,avec,son collègue,,,,non-complex
+5,heureusement,il,décrit,l’accent,de,cette fille,,,,non-complex
+6,maintenant,il,essuie,le défaut,de,cet appareil,,,,non-complex
+7,normalement,il,trace,la chute,du,pilote,,,,non-complex
+8,actuellement,il,surmonte,la terreur,dans,ce pays,,,,non-complex
+9,normalement,il,protège,la chance,de,sa famille,,,,non-complex
+10,ce matin,il,révèle,la perte,financière,actuelle,,,,non-complex
+11,aujourd’hui,le lien,qu’il,entretient,avec,son équipe,est,important,,complex
+12,ce week-end,la rencontre,qu’il,réserve,dans,le restaurant,a,lieu,,complex
+13,vendredi,la tâche,qu’il,décrit,est,à,effectuer,,,complex
+14,cet après-midi,la vision,qu’il ,discute,avec,son collègue,fait,du,bruit,complex
+15,heureusement,l’accent,qu’il,décrit,est,à,cette fille,,,complex
+16,maintenant,le défaut,qu’il,essuie,est ,à,cet appareil-ci,,,complex
+17,normalement,la chute,qu’il,trace,est,celle,du ,pilote,,complex
+18,actuellement,la terreur,qu’il,surmonte,est,dans,ce pays,,,complex
+19,normalement,la chance,qu’il,protège,est,celle,de,sa famille,,complex
+20,ce matin,la perte,qu’il,révèle,est,de,type,financier,,complex
+21,aujourd’hui,je ,sais,l’heure,exacte,,,,,hf
+22,ce week-end,elle,a,le temps,de,sortir,,,,hf
+23,heureusement,la,deuxième,fois,est ,la bonne,,,,hf
+24,sûrement,ça,vaut,le coup,d’essayer,,,,,hf
+25,aujourd’hui,c’est,vraiment,le moment,de,la vérité,,,,hf
+26,maintenant,je,vois,la chose,exceptionnelle,,,,,hf
+27,normalement,on,a,un jour,libre,seulement,,,,hf
+28,actuellement,c’est,vraiment,la vie,en,rose,,,,hf
+29,normalement,on,entend,une voix,claire,,,,,hf
+30,ce matin,je,vois,l’air,du,printemps,,,,hf
+31,aujourd’hui,je,sais,la règle,exacte,,,,,lf
+32,le week-end,elle,a,l’angoisse,de,tomber,,,,lf
+33,heureusement,la ,deuxième,tâche,est ,la meilleure,,,,lf
+34,sûrement,ça,vaut,un mensonge,pieux,,,,,lf
+35,aujourd’hui,c’est,vraiment,une bande,chaotique,,,,,lf
+36,maintenant,je,vois,le lien,exceptionnel,,,,,lf
+37,normalement,on,a,une rencontre,par,mois,,,,lf
+38,actuellement,c’est,vraiment,la chasse,au,trésor,,,,lf
+39,normalement,on,entend,une discussion,structurée,,,,,lf
+40,ce matin,je,vois,la chute,des,feuilles,,,,lf
+41,cet après-midi,elle,a,une faim,de,loup,malheureusement,,,literal
+42,ce matin,il,rend,le,dernier,soupir,dans,son lit,,literal
+43,maintenant,elle,a,un chat,dans,la gorge,malheureusement,,,literal
+44,aujourd’hui,il,a,une humeur,de,chien,à,l’école,,literal
+45,le week-end,je,fonds,en,larmes,en,son absence,,,literal
+46,maintenant,je,fais,une nuit,blanche,malheureusement,,,,literal
+47,ce matin,il,se,tourne,les pouces,en,classe,,,literal
+48,normalement,elle,fait,la,sourde,oreille,avec,nous,,literal
+49,le week-end,elle,en,fait,tout,un mélo,chez,elle,,literal
+50,actuellement,tu,as,l’embarras,du,choix,au,magasin,,literal
+51,aujourd’hui,il,a,d’autres,chats,à,fouetter,à,son bureau,figurative
+52,normalement,elle,donne,sa langue,au,chat,en,jouant,,figurative
+53,vendredi,on,met,le holà,à,ce projet,,,,figurative
+54,actuellement,je,pédale,dans,la semoule, avec,ce projet,,,figurative
+55,maintenant,on,revient,à,nos moutons,pendant,la réunion,,,figurative
+56,c’est,pisser,dans,un violon,avec,ces idées,,,,figurative
+57,malheureusement,il,brûle,ses vaisseaux,dans,son équipe,,,,figurative
+58,ce soir,il,casse,sa pipe,à,l’hôpital,,,,figurative
+59,demain,je,découvre,le pot,aux,roses,à,ce propos,,figurative
+60,normalement,il,fait,la mouche,du,coche,dans,notre magasin,,figurative

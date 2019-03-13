@@ -1,0 +1,263 @@
+/******************************************************************************\
+FILE:           stimuli.zm
+AUTHOR:         Theo Veenker <theo.veenker@beexy.nl>
+ADAPTED BY:     -
+
+DESCRIPTION:
+
+Defines the formats of item table(s) and provides the actual content of
+the item table(s) i.e. stimulus information.
+
+
+HISTORY:
+2012-07-09 TV   Created.
+
+\******************************************************************************/
+
+plugin zep_file;
+
+// Symbolic definition of item type.
+enum ItemType
+{
+    SIMPLE,                     // simple
+    COMPLEX,                    // complex
+    HIGHFREQ,
+    LOWFREQ,
+    LITERAL,                    // literal
+    FIGURATIVE                  // figurative 
+}
+
+
+// Item table record.
+// This script will interprete the labels field as follows: for each subtrial
+// the segment played runs from the offset of the previous segment until the
+// offset of the interval given by the current label.
+record TestItem
+{
+    int         id;             // item 
+    string      seg1;
+    string      seg2;
+    string      seg3;
+    string      seg4;
+    string      seg5;
+    string      seg6;
+    string      seg7;
+    string      seg8;
+    string      seg9;
+    string      question;       // control question/statement
+    bool        qanswer;        // correct statement/answer
+    string      fname_audio;    // audio file name
+    string      fname_label;    // label file name 
+    ItemType    type;           // item type
+    int         tiernum;        // tier number to select from labelling file
+    string      labels;         // segment end labels separated by slashes
+}
+
+
+// Record providing labelling information on the sound file. For each sound
+// file there a Praat TextGrid text file has been created and converted to
+// CSV format using using perl script textgrid2csv.pl. Note, it is assumed the
+// labels in the labelling files come in chronological order (for each tier).
+// The target tier used in this experiment script must be an interval tier.
+record LabelInfo
+{
+    string      basename;       // base name of sound file / text grid file
+    int         tiernum;        // tier number (0 based)
+    string      tiername;       // tier name
+    real        begin;          // interval begin time (or point time)
+    real        end;            // interval end time (or -1)
+    string      label;          // label text
+}
+
+
+// Practice item table.
+//   index: item number
+// TestItem[..] prac_items =
+// {
+//     {
+//         1, SIMPLE, "aardappels.wav", "aardappels.csv", 0, 
+// //        "de/aardappels/liggen/in/de/schuur",
+//         "aardappels/liggen/schuur",
+//         "Ik lust geen bintjes",
+//         false
+//     },
+//     {
+//         2, SIMPLE, "tuinman.wav", "tuinman.csv", 0, 
+// //        "de/tuinman/heeft/'t/gras/gemaaid",
+//         "tuinman/heeft/gras/gemaaid",
+//         "De tuinman is raar",
+//         true
+//     },
+// };
+
+TestItem[..] prac_items;
+TestItem[..] test_items;
+
+
+// Test item table.
+//   index: item number
+
+// TestItem[..] test_items =
+// {
+//     {
+//         1, FILLER, "aardappels.wav", "aardappels.csv", 0, 
+// //        "de/aardappels/liggen/in/de/schuur",
+//         "aardappels/liggen/schuur",
+//         "Aliquam et massa ut diam venenatis facilisis",
+//         false
+//     },
+//     {
+//         2, FILLER, "tuinman.wav", "tuinman.csv", 0, 
+// //        "de/tuinman/heeft/'t/gras/gemaaid",
+//         "tuinman/heeft/gras/gemaaid",
+//         "Donec iaculis blandit mi, et faucibus purus lobortis a.",
+//         true
+//     },
+
+//     {
+//         3, COND1, "appels1.wav", "appels1.csv", 0, 
+// //        "de/groene/appels/waren/erg/zuur",
+//         "#groene/#appels/waren/zuur",
+//         "Duis quis tellus velit, vel hendrerit dolor.",
+//         false
+//     },
+//     {
+//         4, COND1, "fiets1.wav", "fiets1.csv", 0, 
+// //        "de/nieuwe/fiets/is/gestolen",
+//         "#nieuwe/#fiets/gestolen",
+//         "Morbi id lectus in justo sagittis interdum nec eget dolor.",
+//         true
+//     },
+
+//     {
+//         5, COND2, "appels2.wav", "appels2.csv", 0, 
+// //        "de/groene/appels/waren/erg/zuur",
+//         "#groene/#appels/waren/zuur",
+//         "Feugiat dignissim urna, id tempor turpis vulputate nec.",
+//         false
+//     },
+//     {
+//         6, COND2, "fiets2.wav", "fiets2.csv", 0, 
+// //        "de/nieuwe/fiets/is/gestolen",
+//         "#nieuwe/#fiets/gestolen",
+//         "Proin mollis elit eget justo tincidunt ultrices ornare ut ligula.",
+//         true
+//     },
+// };
+
+// Provides the csv file name based on participant data.
+
+string practice_file_name()
+{
+    string name = "practice_items.csv";
+    println("practice_items reading");
+    return name;
+}
+
+string test_file_name()
+{
+    string name = "stimuli_france_utf8_nocaps_mini.csv";
+    println("test_items reading");
+    return name;
+}
+
+
+
+int check_files(TestItem[] target, string filename)
+{
+    println("Checking existance of stimuli files for " + filename);
+
+    int status = OK;
+
+    int index = 0;
+    while(index < target.size)
+    {
+        string audio = stimuli_dir() + "sounds/" + 
+            target[index].fname_audio;
+        if( !file_okay(audio)) status = ERROR;
+
+        string label = stimuli_dir() + "sounds/" + 
+            target[index].fname_label;
+        if( !file_okay(label)) status = ERROR;
+        
+        index++;
+    }
+
+    return status;
+}
+
+// Checks if a file is both existent and readable
+bool file_okay(string filepath)
+{
+    bool okay = file_exists(filepath) && file_readable(filepath);
+    if(!okay)
+        println("Problems with " + filepath);
+
+
+    return okay;
+}
+
+int load_test_stimuli()
+{
+    int status = OK;
+    if( read_csv(test_items, test_file_name()) != OK) {
+        status = ERROR;
+        return status;
+    }
+    if( check_files(test_items, test_file_name()) != OK) {
+        status = ERROR;
+        return status;
+    }
+    return status;
+}
+
+int load_practice_stimuli()
+{
+    int status = OK;
+    if( read_csv(prac_items, practice_file_name()) != OK) {
+        status = ERROR;
+        return status;
+    }
+    if( check_files(prac_items, practice_file_name()) != OK) {
+        status = ERROR;
+        return status;
+    }
+    return status;
+}
+
+// loads in csv into the specified target
+int read_csv(TestItem[] target, string source)
+{
+    int err = target.load(stimuli_dir() + source,
+    true,           // if true, file contains a header row
+    0);             // number of lines to skip before header and data
+    if (err) {
+        println("Trouble loading from " + source);
+        return err;         
+    }
+
+    return OK;
+     // Load data into test_items table.
+}
+
+int load_stimuli()
+{
+    int status = OK;
+    if( read_csv(prac_items, practice_file_name()) != OK) {
+        status = ERROR;
+        return status;
+    }
+    if( check_files(prac_items, practice_file_name()) != OK) {
+         status = ERROR;
+         return status;
+    }
+    if( read_csv(test_items, test_file_name()) != OK) {
+        status = ERROR;
+        return status;
+    }
+    if( check_files(test_items, test_file_name()) != OK) {
+        status = ERROR;
+        return status;
+    }
+    return status;
+}

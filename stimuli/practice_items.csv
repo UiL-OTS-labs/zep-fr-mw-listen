@@ -1,0 +1,3 @@
+id;seg1;seg2;seg3;seg4;seg5;seg6;seg7;seg8;seg9;question;qanswer;fname_audio;fname_label;type;tiernum;labels
+1;aujourd’hui;il;entretient le lien;avec son équipe;;;;;;Il entretient le lien tout seul?;false;aujourdhui_lelien_equipe.wav;aujourdhui_lelien_equipe.csv;SIMPLE;1;il
+2;ce weekend;il réserve;la rancontre;dans le restaurant;;;;;;Il reserve la rancontre dans le cafe?;true;weekend_rancontre_restaurant.wav;weekend_rancontre_restaurant.csv;SIMPLE;1;il réserve
