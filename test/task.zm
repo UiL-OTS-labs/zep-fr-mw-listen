@@ -243,19 +243,12 @@ Block task
                     output.dur3 = test_page.response.segdurs[3];
                     output.dur4 = test_page.response.segdurs[4];
                     output.dur5 = test_page.response.segdurs[5];
-                    output.dur6 = test_page.response.segdurs[6];
-                    output.dur7 = test_page.response.segdurs[7];
-                    output.dur8 = test_page.response.segdurs[8];
-                    output.dur9 = test_page.response.segdurs[9];
+
                     output.rt1 = test_page.response.rt[1];
                     output.rt2 = test_page.response.rt[2];
                     output.rt3 = test_page.response.rt[3];
                     output.rt4 = test_page.response.rt[4];
                     output.rt5 = test_page.response.rt[5];
-                    output.rt6 = test_page.response.rt[6];
-                    output.rt7 = test_page.response.rt[7];
-                    output.rt8 = test_page.response.rt[8];
-                    output.rt9 = test_page.response.rt[9];
                 }
             }
 

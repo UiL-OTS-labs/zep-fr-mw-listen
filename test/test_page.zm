@@ -200,6 +200,8 @@ Page test_page
 
             // Count how many segments/labels in labels string.
             nsegments = count_keys(item.labels, "/") + 1;
+            println("this many segments....");
+            println(nsegments);
 
             segnum = 0;
             prevsegend = 0;
@@ -288,18 +290,31 @@ Page test_page
             }
             else
             {
+                println(segnum);
+
                 string label = token(item.labels, "/", segnum);
                 measure = character(label, 0) == '#';
+                
                 if (measure) label = substring(label, 1, slength-1);
                 label = trim_whitespace(label);
                 segnum++;
 
+
                 // Find label in labelling table.
-                real begin = -1;
-                real end = -1;
+                real begin = -1;//-1;
+                real end = -1;//-1;
                 int n;
+                
+                println("===============");
+
+                println(labels.size);
+
+                println("===============");
+
                 while (n < labels.size)
                 {
+                    println(n);
+
                     if (labels[n].tiernum == item.tiernum && 
                         labels[n].begin >= prevsegend && 
                         labels[n].label == label)
@@ -310,6 +325,13 @@ Page test_page
                     }
                     n++;
                 }
+                println(n);
+                println("begin");
+                println(begin);
+                println("end");
+                println(end);
+
+
                 if (begin < 0)
                 {
                     print_error("Label \"" + label + "\" not found.\n");
@@ -393,6 +415,7 @@ Page test_page
 
 
         // Load labelling information into the labelling table.
+        println("Loading labels");
         labels.load(stimuli_dir() + "sounds/" + item.fname_label, false, 0);
 
 

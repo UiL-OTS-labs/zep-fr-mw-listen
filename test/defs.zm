@@ -35,3 +35,5 @@ const dur       BEEP_DURATION                   = 100ms;
 // What response times are considered too early or too late.
 const dur       TOO_EARLY_RESPONSE              = -100ms;
 const dur       TOO_LATE_RESPONSE               = 500ms;
+
+// const int       PLAYBACK_SAMPLE_RATE            = 44100; //my mac did this

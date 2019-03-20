@@ -231,7 +231,7 @@ int read_csv(TestItem[] target, string source)
     int err = target.load(stimuli_dir() + source,
     true,           // if true, file contains a header row
     0);             // number of lines to skip before header and data
-    if (err) {
+    if (err != OK) {
         println("Trouble loading from " + source);
         return err;         
     }
