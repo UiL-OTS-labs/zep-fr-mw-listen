@@ -156,7 +156,7 @@ string practice_file_name()
 
 string test_file_name()
 {
-    string name = "stimuli_france_utf8_nocaps_mini.csv";
+    string name = "stimuli_france.csv";
     println("test_items reading");
     return name;
 }

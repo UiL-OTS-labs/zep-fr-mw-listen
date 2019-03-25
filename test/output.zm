@@ -24,6 +24,7 @@ record TestOutput
     string      question;       // true/false statement about stimulus (partial)
 
     int         qcorrect;       // correct answer to quest: 0=no, 1=yes, -1=n.a.
+    
     int         dur1;           // duration of starred segment 1 [ms]
     int         dur2;           // duration of starred segment 2 [ms]
     int         dur3;           // duration of starred segment 3 [ms]
