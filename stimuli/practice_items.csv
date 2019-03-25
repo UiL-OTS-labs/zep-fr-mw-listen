@@ -1,3 +1,3 @@
 id;seg1;seg2;seg3;seg4;seg5;seg6;seg7;seg8;seg9;question;qanswer;fname_audio;fname_label;type;tiernum;labels
-1;aujourd’hui;il;entretient;le lien;avec;son equipe;;;;Il entretient le lien tout seul?;FALSE;simple_aujourdhui_entretient_lien_equipe.wav;simple_aujourdhui_entretient_lien_equipe.csv;SIMPLE;4;aujourd'hui/#il/#entretient/#le lien/#avec/son equipe
-2;ce weekend;il ;reserve;la rancontre;dans;le restaurant;;;;Il reserve la rancontre dans le cafe?;FALSE;simple_ceweekend_reserve_rancontre_restaurant.wav;simple_ceweekend_reserve_rancontre_restaurant.csv;SIMPLE;4;ce weekend/#il/#reserve/#la rancontre/#dans/le restaurant
+1;aujourd’hui;il;entretient;le lien;avec;son equipe;;;;Il entretient le lien tout seul?;FALSE;simple_aujourdhui_entretient_lien_equipe.wav;simple_aujourdhui_entretient_lien_equipe.csv;SIMPLE;0;aujourd'hui/#il/#entretient/#le lien/#avec/son equipe
+2;ce weekend;il ;reserve;la rancontre;dans;le restaurant;;;;Il reserve la rancontre dans le cafe?;FALSE;simple_ceweekend_reserve_rancontre_restaurant.wav;simple_ceweekend_reserve_rancontre_restaurant.csv;SIMPLE;0;ce weekend/#il/#reserve/#la rancontre/#dans/le restaurant

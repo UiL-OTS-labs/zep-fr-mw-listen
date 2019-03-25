@@ -291,12 +291,21 @@ Page test_page
             else
             {
                 println(segnum);
+                println(" tiernum = " + item.tiernum);
 
                 string label = token(item.labels, "/", segnum);
+
+                println(label);
+
                 measure = character(label, 0) == '#';
                 
-                if (measure) label = substring(label, 1, slength-1);
+                if (measure)
+                {
+                    label = substring(label, 1, slength-1);
+                }
+
                 label = trim_whitespace(label);
+                
                 segnum++;
 
 
@@ -443,3 +452,4 @@ Page test_page
         target = caller;
     }
 }
+ 

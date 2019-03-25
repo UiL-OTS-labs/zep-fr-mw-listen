@@ -21,7 +21,7 @@ const dur       INTERTRIAL_INTERVAL             = 500ms;
 // starred segments are recorded. When changing this value also change the 
 // definition of the TestOutput record (in output.zm) and make sure all 
 // record fields are assigned to (in listen_mw.zm).
-const int       MAX_STARRED_SEGMENTS            = 5;
+const int       MAX_STARRED_SEGMENTS            = 8;
 
 // Chance of presenting a question/statement (0..100%).
 const int       STATEMENT_CHANCE                = 50;

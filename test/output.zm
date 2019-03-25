@@ -29,12 +29,18 @@ record TestOutput
     int         dur3;           // duration of starred segment 3 [ms]
     int         dur4;           // duration of starred segment 4 [ms]
     int         dur5;           // duration of starred segment 5 [ms]
+    int         dur6;           // duration of starred segment 3 [ms]
+    int         dur7;           // duration of starred segment 4 [ms]
+    int         dur8;           // duration of starred segment 5 [ms]
 
     int         rt1;            // listening time for starred segment 1 [ms]
     int         rt2;            // listening time for starred segment 2 [ms]
     int         rt3;            // listening time for starred segment 3 [ms]
     int         rt4;            // listening time for starred segment 4 [ms]
     int         rt5;            // listening time for starred segment 5 [ms]
+    int         rt6;            // listening time for starred segment 3 [ms]
+    int         rt7;            // listening time for starred segment 4 [ms]
+    int         rt8;            // listening time for starred segment 5 [ms]
 }
 
 
