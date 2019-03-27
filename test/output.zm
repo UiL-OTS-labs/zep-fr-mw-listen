@@ -33,6 +33,7 @@ record TestOutput
     int         dur6;           // duration of starred segment 3 [ms]
     int         dur7;           // duration of starred segment 4 [ms]
     int         dur8;           // duration of starred segment 5 [ms]
+    int         dur9;
 
     int         rt1;            // listening time for starred segment 1 [ms]
     int         rt2;            // listening time for starred segment 2 [ms]
@@ -42,6 +43,7 @@ record TestOutput
     int         rt6;            // listening time for starred segment 3 [ms]
     int         rt7;            // listening time for starred segment 4 [ms]
     int         rt8;            // listening time for starred segment 5 [ms]
+    int         rt9;
 }
 
 
