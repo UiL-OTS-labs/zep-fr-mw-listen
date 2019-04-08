@@ -21,8 +21,8 @@ enum ItemType
 {
     SIMPLE,                     // simple
     COMPLEX,                    // complex
-    HIGHFREQ,
-    LOWFREQ,
+    HIGHFREQ,                   // high freq
+    LOWFREQ,                    // low freq
     LITERAL,                    // literal
     FIGURATIVE                  // figurative 
 }
@@ -70,82 +70,11 @@ record LabelInfo
 }
 
 
-// Practice item table.
-//   index: item number
-// TestItem[..] prac_items =
-// {
-//     {
-//         1, SIMPLE, "aardappels.wav", "aardappels.csv", 0, 
-// //        "de/aardappels/liggen/in/de/schuur",
-//         "aardappels/liggen/schuur",
-//         "Ik lust geen bintjes",
-//         false
-//     },
-//     {
-//         2, SIMPLE, "tuinman.wav", "tuinman.csv", 0, 
-// //        "de/tuinman/heeft/'t/gras/gemaaid",
-//         "tuinman/heeft/gras/gemaaid",
-//         "De tuinman is raar",
-//         true
-//     },
-// };
-
 TestItem[..] prac_items;
 TestItem[..] test_items;
 
 
-// Test item table.
-//   index: item number
-
-// TestItem[..] test_items =
-// {
-//     {
-//         1, FILLER, "aardappels.wav", "aardappels.csv", 0, 
-// //        "de/aardappels/liggen/in/de/schuur",
-//         "aardappels/liggen/schuur",
-//         "Aliquam et massa ut diam venenatis facilisis",
-//         false
-//     },
-//     {
-//         2, FILLER, "tuinman.wav", "tuinman.csv", 0, 
-// //        "de/tuinman/heeft/'t/gras/gemaaid",
-//         "tuinman/heeft/gras/gemaaid",
-//         "Donec iaculis blandit mi, et faucibus purus lobortis a.",
-//         true
-//     },
-
-//     {
-//         3, COND1, "appels1.wav", "appels1.csv", 0, 
-// //        "de/groene/appels/waren/erg/zuur",
-//         "#groene/#appels/waren/zuur",
-//         "Duis quis tellus velit, vel hendrerit dolor.",
-//         false
-//     },
-//     {
-//         4, COND1, "fiets1.wav", "fiets1.csv", 0, 
-// //        "de/nieuwe/fiets/is/gestolen",
-//         "#nieuwe/#fiets/gestolen",
-//         "Morbi id lectus in justo sagittis interdum nec eget dolor.",
-//         true
-//     },
-
-//     {
-//         5, COND2, "appels2.wav", "appels2.csv", 0, 
-// //        "de/groene/appels/waren/erg/zuur",
-//         "#groene/#appels/waren/zuur",
-//         "Feugiat dignissim urna, id tempor turpis vulputate nec.",
-//         false
-//     },
-//     {
-//         6, COND2, "fiets2.wav", "fiets2.csv", 0, 
-// //        "de/nieuwe/fiets/is/gestolen",
-//         "#nieuwe/#fiets/gestolen",
-//         "Proin mollis elit eget justo tincidunt ultrices ornare ut ligula.",
-//         true
-//     },
-// };
-
-// Provides the csv file name based on participant data.
+// Provides the csv file names
 
 string practice_file_name()
 {
@@ -156,7 +85,7 @@ string practice_file_name()
 
 string test_file_name()
 {
-    string name = "stimuli_france.csv";
+    string name = "test_items.csv";
     println("test_items reading");
     return name;
 }

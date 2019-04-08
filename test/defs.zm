@@ -24,7 +24,7 @@ const dur       INTERTRIAL_INTERVAL             = 500ms;
 const int       MAX_STARRED_SEGMENTS            = 9;
 
 // Chance of presenting a question/statement (0..100%).
-const int       STATEMENT_CHANCE                = 50;
+const int       STATEMENT_CHANCE                = 25;
 
 // Delay between response and next stimulus. 
 const dur       STIMULUS_DELAY                  = 50ms;
