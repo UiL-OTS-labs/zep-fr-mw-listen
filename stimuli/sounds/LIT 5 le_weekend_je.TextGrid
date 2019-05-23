@@ -1,0 +1,58 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 4.803 
+tiers? <exists> 
+size = 3 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "le" 
+        xmin = 0 
+        xmax = 4.803 
+        intervals: size = 7 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.8523228648937239 
+            text = "Le weekend" 
+        intervals [2]:
+            xmin = 0.8523228648937239 
+            xmax = 1.4488350120467635 
+            text = "je" 
+        intervals [3]:
+            xmin = 1.4488350120467635 
+            xmax = 2.1541229036806513 
+            text = "fonds" 
+        intervals [4]:
+            xmin = 2.1541229036806513 
+            xmax = 2.5892258816040448 
+            text = "en" 
+        intervals [5]:
+            xmin = 2.5892258816040448 
+            xmax = 3.224335873572869 
+            text = "larmes" 
+        intervals [6]:
+            xmin = 3.224335873572869 
+            xmax = 3.624349901663731 
+            text = "en" 
+        intervals [7]:
+            xmin = 3.624349901663731 
+            xmax = 4.803 
+            text = "son absence" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "weekend" 
+        xmin = 0 
+        xmax = 4.803 
+        intervals: size = 1 
+        intervals [1]:
+            xmin = 0 
+            xmax = 4.803 
+            text = "" 
+    item [3]:
+        class = "TextTier" 
+        name = "je" 
+        xmin = 0 
+        xmax = 4.803 
+        points: size = 0 

@@ -1,0 +1,50 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 4.298 
+tiers? <exists> 
+size = 3 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "ajourdhui" 
+        xmin = 0 
+        xmax = 4.298 
+        intervals: size = 5 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.806243310008983 
+            text = "ajourd'hui " 
+        intervals [2]:
+            xmin = 0.806243310008983 
+            xmax = 1.490314379934755 
+            text = "je " 
+        intervals [3]:
+            xmin = 1.490314379934755 
+            xmax = 2.0942208713536004 
+            text = "sais" 
+        intervals [4]:
+            xmin = 2.0942208713536004 
+            xmax = 3.0962781026901802 
+            text = "l'heure" 
+        intervals [5]:
+            xmin = 3.0962781026901802 
+            xmax = 4.298 
+            text = "exacte" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "je" 
+        xmin = 0 
+        xmax = 4.298 
+        intervals: size = 1 
+        intervals [1]:
+            xmin = 0 
+            xmax = 4.298 
+            text = "" 
+    item [3]:
+        class = "TextTier" 
+        name = "sais" 
+        xmin = 0 
+        xmax = 4.298 
+        points: size = 0 

@@ -1,0 +1,58 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 4.768 
+tiers? <exists> 
+size = 3 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "heureusement" 
+        xmin = 0 
+        xmax = 4.768 
+        intervals: size = 7 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.9210878350905393 
+            text = "heureusement" 
+        intervals [2]:
+            xmin = 0.9210878350905393 
+            xmax = 1.8696833624887708 
+            text = "l'accent" 
+        intervals [3]:
+            xmin = 1.8696833624887708 
+            xmax = 2.471448650182024 
+            text = "qu'il" 
+        intervals [4]:
+            xmin = 2.471448650182024 
+            xmax = 3.141394241407025 
+            text = "decrit" 
+        intervals [5]:
+            xmin = 3.141394241407025 
+            xmax = 3.4556165098576894 
+            text = "est" 
+        intervals [6]:
+            xmin = 3.4556165098576894 
+            xmax = 3.9032350243487297 
+            text = "a" 
+        intervals [7]:
+            xmin = 3.9032350243487297 
+            xmax = 4.768 
+            text = "cette fille" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "laccent" 
+        xmin = 0 
+        xmax = 4.768 
+        intervals: size = 1 
+        intervals [1]:
+            xmin = 0 
+            xmax = 4.768 
+            text = "" 
+    item [3]:
+        class = "TextTier" 
+        name = "quil" 
+        xmin = 0 
+        xmax = 4.768 
+        points: size = 0 

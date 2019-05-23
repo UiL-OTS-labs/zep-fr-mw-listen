@@ -1,0 +1,80 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 7.242 
+tiers? <exists> 
+size = 4 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "cetapresmidi" 
+        xmin = 0 
+        xmax = 7.242 
+        intervals: size = 10 
+        intervals [1]:
+            xmin = 0 
+            xmax = 1.2144157084771405 
+            text = "cet apres-midi" 
+        intervals [2]:
+            xmin = 1.2144157084771405 
+            xmax = 2.3625522741241545 
+            text = "la vision " 
+        intervals [3]:
+            xmin = 2.3625522741241545 
+            xmax = 2.9118568271003733 
+            text = "qu'il " 
+        intervals [4]:
+            xmin = 2.9118568271003733 
+            xmax = 3.888898531984303 
+            text = "discute" 
+        intervals [5]:
+            xmin = 3.888898531984303 
+            xmax = 4.591287960380123 
+            text = "avec " 
+        intervals [6]:
+            xmin = 4.591287960380123 
+            xmax = 5.608852132286889 
+            text = "son collegue" 
+        intervals [7]:
+            xmin = 5.608852132286889 
+            xmax = 6.135644203583754 
+            text = "fait" 
+        intervals [8]:
+            xmin = 6.135644203583754 
+            xmax = 6.711963734575197 
+            text = "du " 
+        intervals [9]:
+            xmin = 6.711963734575197 
+            xmax = 6.743481208926291 
+            text = "" 
+        intervals [10]:
+            xmin = 6.743481208926291 
+            xmax = 7.242 
+            text = "bruit" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "la" 
+        xmin = 0 
+        xmax = 7.242 
+        intervals: size = 1 
+        intervals [1]:
+            xmin = 0 
+            xmax = 7.242 
+            text = "" 
+    item [3]:
+        class = "IntervalTier" 
+        name = "vision" 
+        xmin = 0 
+        xmax = 7.242 
+        intervals: size = 1 
+        intervals [1]:
+            xmin = 0 
+            xmax = 7.242 
+            text = "" 
+    item [4]:
+        class = "TextTier" 
+        name = "quil" 
+        xmin = 0 
+        xmax = 7.242 
+        points: size = 0 

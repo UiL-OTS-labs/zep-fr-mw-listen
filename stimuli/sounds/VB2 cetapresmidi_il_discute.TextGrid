@@ -1,0 +1,50 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 4.161 
+tiers? <exists> 
+size = 3 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "cetapresmidi" 
+        xmin = 0 
+        xmax = 4.161 
+        intervals: size = 5 
+        intervals [1]:
+            xmin = 0 
+            xmax = 1.2095762658227847 
+            text = "cetapresmidi" 
+        intervals [2]:
+            xmin = 1.2095762658227847 
+            xmax = 1.7354743670886075 
+            text = "il" 
+        intervals [3]:
+            xmin = 1.7354743670886075 
+            xmax = 2.6747952531645565 
+            text = "discute" 
+        intervals [4]:
+            xmin = 2.6747952531645565 
+            xmax = 3.2827699367088603 
+            text = "avec" 
+        intervals [5]:
+            xmin = 3.2827699367088603 
+            xmax = 4.161 
+            text = "cettefille" 
+    item [2]:
+        class = "IntervalTier" 
+        name = "il" 
+        xmin = 0 
+        xmax = 4.161 
+        intervals: size = 1 
+        intervals [1]:
+            xmin = 0 
+            xmax = 4.161 
+            text = "" 
+    item [3]:
+        class = "TextTier" 
+        name = "discute" 
+        xmin = 0 
+        xmax = 4.161 
+        points: size = 0 

@@ -1,0 +1,66 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 5.729 
+tiers? <exists> 
+size = 3 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "aujourdhui" 
+        xmin = 0 
+        xmax = 5.729 
+        intervals: size = 9 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.7612370490756939 
+            text = "ajourdhui" 
+        intervals [2]:
+            xmin = 0.7612370490756939 
+            xmax = 1.5305931835374216 
+            text = "le lien" 
+        intervals [3]:
+            xmin = 1.5305931835374216 
+            xmax = 2.050620941090256 
+            text = "qu'il " 
+        intervals [4]:
+            xmin = 2.050620941090256 
+            xmax = 2.9588885998297956 
+            text = "entretien" 
+        intervals [5]:
+            xmin = 2.9588885998297956 
+            xmax = 2.976697769609002 
+            text = "" 
+        intervals [6]:
+            xmin = 2.976697769609002 
+            xmax = 3.393432342442438 
+            text = "avec" 
+        intervals [7]:
+            xmin = 3.393432342442438 
+            xmax = 4.57596121578176 
+            text = "son equipe" 
+        intervals [8]:
+            xmin = 4.57596121578176 
+            xmax = 4.960639283012624 
+            text = "est" 
+        intervals [9]:
+            xmin = 4.960639283012624 
+            xmax = 5.729 
+            text = "important " 
+    item [2]:
+        class = "IntervalTier" 
+        name = "lelien" 
+        xmin = 0 
+        xmax = 5.729 
+        intervals: size = 1 
+        intervals [1]:
+            xmin = 0 
+            xmax = 5.729 
+            text = "" 
+    item [3]:
+        class = "TextTier" 
+        name = "quil" 
+        xmin = 0 
+        xmax = 5.729 
+        points: size = 0 

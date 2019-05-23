@@ -1,0 +1,44 @@
+File type = "ooTextFile"
+Object class = "TextGrid"
+
+xmin = 0 
+xmax = 4.434 
+tiers? <exists> 
+size = 2 
+item []: 
+    item [1]:
+        class = "IntervalTier" 
+        name = "actuellement" 
+        xmin = 0 
+        xmax = 4.434 
+        intervals: size = 6 
+        intervals [1]:
+            xmin = 0 
+            xmax = 0.8678243997152584 
+            text = "actuellement" 
+        intervals [2]:
+            xmin = 0.8678243997152584 
+            xmax = 1.4509014898743304 
+            text = "c'est" 
+        intervals [3]:
+            xmin = 1.4509014898743304 
+            xmax = 2.263970098929481 
+            text = "vraiment" 
+        intervals [4]:
+            xmin = 2.263970098929481 
+            xmax = 3.203372077519097 
+            text = "la chasse" 
+        intervals [5]:
+            xmin = 3.203372077519097 
+            xmax = 3.6536371638086025 
+            text = "au" 
+        intervals [6]:
+            xmin = 3.6536371638086025 
+            xmax = 4.434 
+            text = "tresor" 
+    item [2]:
+        class = "TextTier" 
+        name = "cest" 
+        xmin = 0 
+        xmax = 4.434 
+        points: size = 0 

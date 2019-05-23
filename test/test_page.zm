@@ -424,7 +424,8 @@ Page test_page
 
 
         // Load labelling information into the labelling table.
-        println("Loading labels");
+        println("Loading labels for");
+        println(item.fname_label);
         labels.load(stimuli_dir() + "sounds/" + item.fname_label, false, 0);
 
 
