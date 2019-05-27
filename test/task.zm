@@ -186,7 +186,7 @@ Block task
         on_event:entry()
         {
             // Randomize test items table.
-            if (shuffle_test_items() != OK) terminate;
+            //if (shuffle_test_items() != OK) terminate;
 
             num_cycles = test_items.size;
 //            num_cycles = 3;

@@ -1,4 +1,4 @@
 id;seg1;seg2;seg3;seg4;seg5;seg6;seg7;seg8;seg9;question;qanswer;fname_audio;fname_label;type;tiernum;labels
-1;heureusement;je;surmont;laperte;;;;;;La perte est bon?;FALSE;VB3 heureusement je surmonte_wav.wav;VB3 heureusement_je_surmonte.csv;SIMPLE;0;heureusement/#je/#surmonte/laperte
-2;aujourdhui;il;decrit;ledefaut;de;cet appareil;;;;Il reserve la rancontre dans le cafe?;FALSE;VB1 aujourdhui il decrit_wav.wav;VB1 aujourdhui_il_decrit.csv;SIMPLE;0;aujourdhui/#il/#decrit/#ledefaut/#de/cetappareil
-3;cetapresmidi;il;discute;avec;cetfille;;;;;Il discute avec le chien?;FALSE;VB2 cetapresmidi il discute_wav.wav;VB2 cetapresmidi_il_discute.csv;SIMPLE;0;cetteapresmidi/#il/#discute/#avec/cettefille
+1;heureusement;je;surmonte;laperte;;;;;;je surmonte le problème? ;FALSE;VB3 heureusement je surmonte_wav.wav;VB3 heureusement_je_surmonte.csv;SIMPLE;0;heureusement/#je/#surmonte/laperte
+2;aujourdhui;il;decrit;ledefaut;de;cet appareil;;;;c'était hier?;FALSE;VB1 aujourdhui il decrit_wav.wav;VB1 aujourdhui_il_decrit.csv;SIMPLE;0;aujourdhui/#il/#decrit/#ledefaut/#de/cetappareil
+3;cetapresmidi;il;discute;avec;cetfille;;;;;il discute avec le voisin?;FALSE;VB2 cetapresmidi il discute_wav.wav;VB2 cetapresmidi_il_discute.csv;SIMPLE;0;cetteapresmidi/#il/#discute/#avec/cettefille
